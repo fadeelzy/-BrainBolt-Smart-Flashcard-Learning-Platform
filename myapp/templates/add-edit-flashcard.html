@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Edit Flashcard - BrainBolt</title>
+    <meta name="description" content="Create or edit your flashcards with BrainBolt's intuitive interface.">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <!-- Logo -->
+                    <a href="{% url 'dashboard' %}" class="logo hover-lift">
+                        <img src="{% static 'logo.png' %}" alt="BrainBolt Logo">
+                        <div>
+                            <h1>BrainBolt</h1>
+                            <p>Smart Learning</p>
+                        </div>
+                    </a>
+
+                    <!-- Navigation -->
+                    <nav class="nav">
+                        <a href="{% url 'dashboard' %}" class="btn btn-ghost btn-sm hover-lift">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2">
+                                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            </svg>
+                            Dashboard
+                        </a>
+                        <a href="{% url 'add_flashcard' %}" class="btn btn-ghost btn-sm hover-lift active">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14m-7-7v14"/>
+                            </svg>
+                            New Card
+                        </a>
+                        <a href="{% url 'quiz' %}" class="btn btn-ghost btn-sm hover-lift">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                            Quiz
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Section -->
+        <main class="container py-8">
+            <div class="max-w-2xl mx-auto">
+
+                <!-- Page Header -->
+                <div class="flex items-center gap-4 mb-8">
+                    <a href="{% url 'dashboard' %}" class="btn btn-outline btn-icon hover-lift">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2">
+                            <path d="m12 19-7-7 7-7m7 14-7-7 7-7"/>
+                        </svg>
+                    </a>
+                    <div>
+                        <h1 id="page-title" class="text-3xl font-bold text-gradient">Create New Flashcard</h1>
+                        <p id="page-description" class="text-muted">Add a new card to your collection</p>
+                    </div>
+                </div>
+
+                <!-- Flashcard Form -->
+                <div class="card shadow-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Flashcard Details</h2>
+                        <p class="card-description">Fill in the question, answer, and topic for your flashcard</p>
+                    </div>
+                    <div class="card-content">
+                        <form id="flashcard-form" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="topic" class="label">Topic</label>
+                                <input 
+                                    type="text" 
+                                    id="topic" 
+                                    name="topic"
+                                    class="input" 
+                                    placeholder="e.g., Mathematics, History, Science..."
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="question" class="label">Question</label>
+                                <textarea 
+                                    id="question"
+                                    name="question"
+                                    class="textarea" 
+                                    placeholder="Enter your question here..."
+                                    rows="4"
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="answer" class="label">Answer</label>
+                                <textarea 
+                                    id="answer"
+                                    name="answer"
+                                    class="textarea" 
+                                    placeholder="Enter the answer here..."
+                                    rows="4"
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <button 
+                                    type="submit" 
+                                    id="save-btn" 
+                                    class="btn btn-primary btn-lg w-full hover-lift"
+                                >
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                         stroke="currentColor" stroke-width="2">
+                                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                                        <polyline points="17,21 17,13 7,13 7,21"/>
+                                        <polyline points="7,3 7,8 15,8"/>
+                                    </svg>
+                                    Create Card
+                                </button>
+
+                                <button 
+                                    type="button" 
+                                    id="delete-btn" 
+                                    class="btn btn-destructive hover-lift hidden"
+                                    onclick="deleteFlashcard()"
+                                >
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                         stroke="currentColor" stroke-width="2">
+                                        <polyline points="3,6 5,6 21,6"/>
+                                        <path d="m19,6v14a2 2 0 0 1-2,2H7a2 2 0 0 1-2-2V6m3,0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2,2v2"/>
+                                    </svg>
+                                    Delete
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Flashcard Preview -->
+                <div id="preview-section" class="card shadow-card mt-8 hidden">
+                    <div class="card-header">
+                        <h2 class="card-title">Preview</h2>
+                        <p class="card-description">Here's how your flashcard will look</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="flashcard cursor-pointer" id="preview-flashcard" onclick="togglePreview()">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="text-center">
+                                        <h3 class="text-sm font-medium text-muted mb-4">QUESTION</h3>
+                                        <p id="preview-question" class="text-xl font-medium"></p>
+                                    </div>
+                                    <div class="mt-6 text-sm text-muted">Click to reveal answer</div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="text-center">
+                                        <h3 class="text-sm font-medium mb-4" style="color: rgba(255,255,255,0.8)">ANSWER</h3>
+                                        <p id="preview-answer" class="text-xl font-medium text-white"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'add-edit-flashcard.js' %}"></script>
+   
+</body>
+</html>

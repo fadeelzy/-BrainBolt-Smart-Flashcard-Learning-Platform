@@ -1,0 +1,102 @@
+# =====================================
+# 🧠 BrainBolt Project - Git Ignore File
+# =====================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Django stuff:
+db.sqlite3
+media/
+staticfiles/
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.mo
+local_settings.py
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# VS Code & Editor Configs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Node / Frontend Builds (if using npm or yarn)
+node_modules/
+dist/
+build/
+package-lock.json
+yarn.lock
+
+# Compiled files / Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+
+# Coverage / Testing
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Migrations (optional: comment out if you want to keep them)
+# migrations/
+
+# Deployment / Cloud Files
+*.bak
+*.swp
+*.tmp
+*.pid
+*.seed
+*.old
+*.orig
+
+# Render / Docker / CI
+Dockerfile
+docker-compose.yml
+*.tar
+*.gz
+*.zip
+
+# =====================================
+# Sensitive API keys & tokens
+# =====================================
+# Never commit your Gemini / Hugging Face / OpenAI keys
+.env
+secrets.json
+config.json
+credentials.json
+google_credentials.json
