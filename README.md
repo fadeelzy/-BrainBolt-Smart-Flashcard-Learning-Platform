@@ -4,7 +4,6 @@ An intelligent flashcard web app that helps users learn faster using AI-generate
 Built with Django, PostgreSQL, and a clean HTML/CSS/JS frontend — powered by Google Gemini AI for interactive study assistance.
 
 🚀 Features
-
 ✅ User Dashboard – View topics, progress, and flashcards in a modern responsive interface
 ✅ Create & Manage Flashcards – Add, edit, and delete cards easily by topic
 ✅ AI Study Assistant – Generates practice questions using Gemini AI
@@ -83,6 +82,7 @@ Example body for /ai-generate/:
 }
 
 🧑‍💻 Folder Structure
+
 brainbolt/
 │
 ├── brainbolt/               
