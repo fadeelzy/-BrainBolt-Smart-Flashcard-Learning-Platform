@@ -13,14 +13,17 @@ Built with Django, PostgreSQL, and a clean HTML/CSS/JS frontend — powered by G
 ✅ Responsive UI – Built with modern CSS and JS for a smooth user experience
 
 🧩 Tech Stack
-Layer	Technologies Used
-Frontend	HTML5, CSS3, JavaScript (Vanilla)
-Backend	Django 5+, Python 3.12
-Database	PostgreSQL
-AI Integration	Google Gemini API (via google-generativeai)
-Version Control	Git & GitHub
-Deployment (optional)	Render / Vercel / Railway
-Others	CSRF protection, JSON APIs, Modular views
+
+-Layer	Technologies Used
+-Frontend	HTML5, CSS3
+-JavaScript (Vanilla)
+-Backend	Django 5+, Python 3.12
+-Database	PostgreSQL
+-AI Integration	Google Gemini API (via google-generativeai)
+-Version Control	Git & GitHub
+-Deployment (optional)	Render / Vercel / Railway
+-Others	CSRF protection, JSON APIs, Modular views
+
 🧠 AI Integration — “Study Assistant”
 
 The AI Assistant uses Google Gemini (models/gemini-2.5-flash) to suggest short, clear study questions for any topic entered by the user.
@@ -36,6 +39,7 @@ Django view calls Gemini API and returns generated questions
 The dashboard displays a list of suggested questions dynamically
 
 ⚙️ Setup & Installation
+
 1️⃣ Clone the Repository
 git clone https://github.com/<your-username>/brainbolt.git
 cd brainbolt
@@ -81,8 +85,8 @@ Example body for /ai-generate/:
 🧑‍💻 Folder Structure
 brainbolt/
 │
-├── brainbolt/               # Django project settings
-├── flashcards/              # Main app (models, views, urls)
+├── brainbolt/               
+├── flashcards/             
 │   ├── templates/
 │   │   └── dashboard.html
 │   ├── static/js/
@@ -124,7 +128,7 @@ A passionate Backend Developer, Site Reliability Engineer and Cloud solutions Ar
 I love building tools that blend data, automation, monitoring, intelligence and ensuring reliability, security and scalability.
 
 📫 Reach me at: [fadeelzy@gmail.com or connect with me linkedin.com/in/fadilah-abdulkadir-378a47269]
-💻 Portfolio: [your portfolio link or GitHub profile]
+💻 Portfolio: []
 
 ⭐ If You Liked This Project...
 
