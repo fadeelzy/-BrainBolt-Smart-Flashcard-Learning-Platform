@@ -84,7 +84,6 @@ coverage.xml
 *.orig
 
 # Render / Docker / CI
-Dockerfile
 docker-compose.yml
 *.tar
 *.gz
