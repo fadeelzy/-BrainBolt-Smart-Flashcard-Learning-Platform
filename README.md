@@ -4,26 +4,43 @@ An intelligent flashcard web app that helps users learn faster using AI-generate
 Built with Django, PostgreSQL, and a clean HTML/CSS/JS frontend — powered by Google Gemini AI for interactive study assistance.
 
 🚀 Features
+
 ✅ User Dashboard – View topics, progress, and flashcards in a modern responsive interface
+
 ✅ Create & Manage Flashcards – Add, edit, and delete cards easily by topic
+
 ✅ AI Study Assistant – Generates practice questions using Gemini AI
+
 ✅ Quiz Mode – Test yourself by topic and track mastery
+
 ✅ PostgreSQL Database – Reliable, scalable data storage
+
 ✅ Responsive UI – Built with modern CSS and JS for a smooth user experience
+
 
 🧩 Tech Stack
 
 -Layer	Technologies Used
+
 -Frontend	HTML5, CSS3
+
 -JavaScript (Vanilla)
+
 -Backend	Django 5+, Python 3.12
--Database	PostgreSQL
+
+-Database	PostgreSQL hosted on Neon
+
 -AI Integration	Google Gemini API (via google-generativeai)
+
 -Version Control	Git & GitHub
--Deployment (optional)	Render / Vercel / Railway
+
+-Deployment -	Render 
+
 -Others	CSRF protection, JSON APIs, Modular views
 
+
 🧠 AI Integration — “Study Assistant”
+
 
 The AI Assistant uses Google Gemini (models/gemini-2.5-flash) to suggest short, clear study questions for any topic entered by the user.
 
@@ -31,11 +48,15 @@ Flow:
 
 User enters a topic (e.g., “Python loops”)
 
+
 The frontend sends a request to /ai-generate/
+
 
 Django view calls Gemini API and returns generated questions
 
+
 The dashboard displays a list of suggested questions dynamically
+
 
 ⚙️ Setup & Installation
 
@@ -83,27 +104,35 @@ Example body for /ai-generate/:
 
 🧑‍💻 Folder Structure
 
-brainbolt/
+flashcardproject/
+
 │
-├── brainbolt/               
-├── flashcards/             
+├── flashcardproject/    
+
 │   ├── templates/
-│   │   └── dashboard.html
+
+│   │   └── dashboard.html and others
+
 │   ├── static/js/
+
 │   │   └── dashboard.js
+
 │   ├── views.py
+
 │   ├── models.py
+
 │   └── urls.py
+
 ├── manage.py
 
 
 🌍 Deployment Notes
 
-Use Render, Vercel, or Railway for free hosting.
+Use Render
 
 Set your environment variables in the dashboard before deploying.
 
-For PostgreSQL, use Render’s free Postgres instance or Neon DB.
+For PostgreSQL i used Neon DB.
 
 🧑‍🎓 Learning Outcome
 
