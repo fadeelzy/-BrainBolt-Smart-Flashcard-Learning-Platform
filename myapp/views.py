@@ -6,11 +6,68 @@ import json
 import google.generativeai as genai
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 # Create your views here.
+def signup(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password1 = request.POST.get("password1")
+        password2 = request.POST.get("password2")
 
-# ===================== DASHBOARD VIEW =====================
+        # Validate fields
+        if not all([username, email, password1, password2]):
+            return render(request, "signup.html", {"error": "All fields are required."})
+
+        if password1 != password2:
+            return render(request, "signup.html", {"error": "Passwords do not match."})
+
+        if User.objects.filter(username=username).exists():
+            return render(request, "signup.html", {"error": "Username already taken."})
+
+        if User.objects.filter(email=email).exists():
+            return render(request, "signup.html", {"error": "Email already registered."})
+
+        # Create user
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password1
+        )
+        user.save()
+
+        return render(request, "signup.html", {
+            "success": "Account created successfully! You can now log in."
+        })
+
+    return render(request, "signup.html")
+    
+
+# LOGIN
+
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect("dashboard")
+        else:
+            return render(request, "login.html", {
+                "error": "Invalid username or password."
+            })
+
+    return render(request, "login.html")
+
+
+#DASHBOARD VIEW
+
 def dashboard(request):
     # Group flashcards by topic
     flashcards = Flashcard.objects.all().order_by('topic', '-created_at')

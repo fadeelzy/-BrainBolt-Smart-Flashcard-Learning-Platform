@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffeaf1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            width: 420px;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #4741a6;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #4741a6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .btn:hover {
+            background: #3c3791;
+        }
+
+        .error-message, .success-message {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .error-message {
+            background: #ffdddd;
+            border-left: 5px solid #ff6b6b;
+            color: #b30000;
+        }
+
+        .success-message {
+            background: #ddffdd;
+            border-left: 5px solid #4CAF50;
+            color: #1b7e27;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #4741a6;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signup-container">
+        <h2>Create an Account</h2>
+
+        {% if error %}
+        <div class="error-message">{{ error }}</div>
+        {% endif %}
+
+        {% if success %}
+        <div class="success-message">{{ success }}</div>
+        {% endif %}
+
+        <form method="POST" action="{% url 'signup' %}">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" required />
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" name="email" id="email" required />
+            </div>
+
+            <div class="input-group">
+                <label for="password1">Password</label>
+                <input type="password" name="password1" id="password1" required />
+            </div>
+
+            <div class="input-group">
+                <label for="password2">Confirm Password</label>
+                <input type="password" name="password2" id="password2" required />
+            </div>
+
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+
+        <div class="login-link">
+            Already have an account? <a href="{% url 'login' %}">Log in</a>
+        </div>
+    </div>
+
+</body>
+</html>
