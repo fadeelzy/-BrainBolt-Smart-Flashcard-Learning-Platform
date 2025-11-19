@@ -26,4 +26,4 @@ COPY . .
 RUN python manage.py collectstatic --noinput || true
 
 # Gunicorn command
-CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn myproject.wsgi:application --bind 0.0.0.0:$PORT"]
+CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn flashcardproject.wsgi:application --bind 0.0.0.0:$PORT"]
